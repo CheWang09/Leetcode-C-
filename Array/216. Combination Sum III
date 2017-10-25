@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void combination(vector<int> &number,int cur,int k,int n,vector<vector<int>> &res)
+    {
+        if(k==0&&n==0) 
+        {
+            res.push_back(number);
+            return;
+        }//correct vector put in the reslut array
+        
+        int end=n<9?n:9;//shorten the scope of numbers
+        end-=k-1;
+        for(int i=cur+1;i<=end;i++)
+        {
+            number.push_back(i);
+            combination(number,i,k-1,n-i,res);
+            number.pop_back();
+        }
+        return;
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> res;
+        vector<int> number;
+        int cur=0;
+        combination(number,cur,k,n,res);//backtracking algorithm
+        return res;
+    }
+};
