@@ -5,7 +5,7 @@ public:
         if(nums.empty()) return 0;
         
         sort(nums.begin(),nums.end());
-        int Min=2147483647;
+        int Min=nums[0]+nums[1]+nums[2];
         for(int i=0;i<nums.size()-2;i++)
         {
             if(i>0&&nums[i]==nums[i-1]) continue;
@@ -15,13 +15,13 @@ public:
             while(begin<end)
             {
                 int sum=nums[i]+nums[begin]+nums[end];
-                if(abs(sum-target)<=abs(Min)) Min=sum-target;
+                if(abs(sum-target)<=abs(Min-target)) Min=sum;
                 if(sum==target) return sum;
                 else if(sum>target) --end;
                 else ++begin;
             }
         }
-        return Min+target;
+        return Min;
         
     }
 };
