@@ -20,3 +20,21 @@ class Solution:
                 else:
                     res.append(i-sum(res[:])+1)
         return res
+  
+
+###second method:::
+class Solution:
+    def partitionLabels(self, S):
+        """
+        :type S: str
+        :rtype: List[int]
+        """
+        dicts = {j:i for i,j in enumerate(S)}
+        start = j = 0
+        res = []
+        for i, char in enumerate(S):
+            j = max(j, dicts[char])
+            if i == j:
+                res.append(j-start+1)
+                start = i + 1
+        return res
